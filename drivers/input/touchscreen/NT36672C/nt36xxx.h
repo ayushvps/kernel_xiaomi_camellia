@@ -121,6 +121,7 @@ struct nvt_ts_data {
 	struct spi_device *client;
 	struct input_dev *input_dev;
 	struct delayed_work nvt_fwu_work;
+	struct kthread_delayed_work nvt_fwu_dw;
 	uint16_t addr;
 	int8_t phys[32];
 #if defined(CONFIG_FB)
@@ -175,7 +176,6 @@ struct nvt_ts_data {
     struct mtk_chip_config spi_ctrl;
 #endif
 	int gesture_enabled;
-
 	int db_wakeup;
 	struct class *ts_tp_class;
 	struct device *ts_touch_dev;
@@ -260,6 +260,18 @@ int32_t nvt_set_page(uint32_t addr);
 int32_t nvt_write_addr(uint32_t addr, uint8_t data);
 #if NVT_TOUCH_ESD_PROTECT
 extern void nvt_esd_check_enable(uint8_t enable);
+#if NVT_TOUCH_MP
+extern int32_t nvt_mp_proc_init(void);
+extern void nvt_mp_proc_deinit(void);
+#endif
+#if NVT_TOUCH_EXT_PROC
+extern int32_t nvt_extra_proc_init(void);
+extern void nvt_extra_proc_deinit(void);
+#endif
+#if BOOT_UPDATE_FIRMWARE
+static struct kthread_worker *nvt_fwu_worker;
+extern void Boot_Update_Firmware(struct kthread_work *work);
+#endif
 #endif /* #if NVT_TOUCH_ESD_PROTECT */
 int32_t nvt_set_pocket_palm_switch(uint8_t pocket_palm_switch);
 #endif /* _LINUX_NVT_TOUCH_H */
