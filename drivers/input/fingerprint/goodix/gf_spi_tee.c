@@ -102,7 +102,7 @@ u32 gf_spi_speed = 1*1000000;
 bool goodix_fp_exist = false;
 extern bool fpc1542_fp_exist;
 extern int mtk_drm_early_resume(int timeout);
-extern struct spi_device *spi_fingerprint;
+struct spi_device *spi_fingerprint;
 static struct gf_device goodix_dev;
 struct TEEC_UUID uuid_ta_gf = { 0x8888c03f, 0xc30c, 0x4dd0,
 	{ 0xa3, 0x19, 0xea, 0x29, 0x64, 0x3d, 0x4d, 0x4b } };
@@ -2279,10 +2279,6 @@ static int __init gf_init(void)
 	FUNC_ENTRY();
 	pr_err("%s %d\n", __func__, __LINE__);
 
-	if (fpc1542_fp_exist) {
-		pr_err("%s FPC sensor has been detected, so exit Goodxi sensor detect.\n",__func__);
-		return -EINVAL;
-	}
 	if (0 != platform_driver_register(&gf_platform_driver)) {
 		pr_err(KERN_INFO "%s: register platform driver fail\n",
 		       __func__);
