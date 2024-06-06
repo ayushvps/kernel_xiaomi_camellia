@@ -113,6 +113,16 @@ config TOUCHSCREEN_FT5X26
 	  To compile this dirver as a module, choose M here: the
 	  module will be called.
 
+config TOUCHSCREEN_FT8722
+	bool "FT8722 for Mediatek package"
+	help
+	  Say Y here if you have FT8722 touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+
 config TOUCHSCREEN_FT5X26_WUXGA
 	bool "FT5X26 WUXGA for Mediatek package"
 	help
@@ -201,5 +211,7 @@ config TOUCHSCREEN_GOODIX_BRL
 	  If build module, say M.
 	  If unsure, say N.
 source "drivers/input/touchscreen/mediatek/goodix_berlin_driver/Kconfig"
+
+source "drivers/input/touchscreen/mediatek/NT36672C/Kconfig"
 
 endif
