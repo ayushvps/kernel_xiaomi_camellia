@@ -53,7 +53,7 @@
 static int current_fps = 60;
 #endif
 /*BSP.Touch - 2020.11.27 - Add for double click*/
-bool nvt_gesture_flag;
+extern bool nvt_gesture_flag;
 extern int lcm_name[10];
 
 /* i2c control start */

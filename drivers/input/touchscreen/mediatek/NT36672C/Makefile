@@ -4,7 +4,7 @@
 
 # Each configuration option enables a list of files.
 # Huaqin add for HQ-131657 by liunianliang at 2021/06/03 start
-ccflags-$(CONFIG_TOUCHSCREEN_NT36672C) += -Wunused-variable -I$(srctree)/drivers/misc/mediatek/include/mt-plat/
+ccflags-$(CONFIG_TOUCHSCREEN_NT36672C) += -I$(srctree)/drivers/misc/mediatek/include/mt-plat/
 ccflags-$(CONFIG_TOUCHSCREEN_NT36672C) += -I$(srctree)/drivers/misc/mediatek/include/mt-plat/$(MTK_PLATFORM)/include/
 # Huaqin add for HQ-131657 by liunianliang at 2021/06/03 end
 

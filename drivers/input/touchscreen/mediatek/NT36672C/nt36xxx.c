@@ -27,6 +27,7 @@
 #include <linux/of_irq.h>
 /*BSP.Touch - 2020.11.13 - add for hw_info start*/
 #include <linux/string.h>
+//#include <linux/hqsysfs.h>
 /*BSP.Touch - 2020.11.13 - add for hw_info end*/
 #if defined(CONFIG_FB)
 #ifdef CONFIG_DRM_MSM
@@ -79,7 +80,7 @@ struct nvt_ts_data *ts;
 static uint8_t  tp_fw_version;
 static char tp_version_info[128] = "";
 /*BSP.Touch - 2020.11.13 - add for hw_info end*/
-extern bool nvt_gesture_flag;
+bool nvt_gesture_flag;
 #if BOOT_UPDATE_FIRMWARE
 static struct workqueue_struct *nvt_fwu_wq;
 extern void Boot_Update_Firmware(struct work_struct *work);
@@ -3175,7 +3176,7 @@ static int32_t __init nvt_driver_init(void)
 {
 	int32_t ret = 0;
 
-	NVT_LOG("start\n");
+	NVT_LOG("start (mediatek)\n");
 
 	if (2 == is_ft_lcm){
 		printk("%s result  is_ft:%d", __func__, is_ft_lcm);

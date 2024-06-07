@@ -2221,7 +2221,7 @@ static int32_t __init nvt_driver_init(void)
 {
 	int32_t ret = 0;
 
-	NVT_LOG("start\n");
+	NVT_LOG("start (drivers/input/touchscreen)\n");
 
 	//---add spi driver---
 	ret = spi_register_driver(&nvt_spi_driver);

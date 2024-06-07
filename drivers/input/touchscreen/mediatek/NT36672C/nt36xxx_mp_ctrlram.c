@@ -1234,12 +1234,10 @@ Description:
 return:
 	Executive outcomes. 0---succeed. negative---failed.
 *******************************************************/
-// yet another hack
-static unsigned char a_mpcriteria[4096] = {0};	
 static int32_t nvt_selftest_open(struct inode *inode, struct file *file)
 {
 	struct device_node *np = ts->client->dev.of_node;
-	//unsigned char mpcriteria[4096] = {0};	//novatek-mp-criteria-default
+	unsigned char mpcriteria[1024] = {0};	//novatek-mp-criteria-default
 
 	uint8_t buf[8] = {0};
 	TestResult_SPI_Comm = 0;
@@ -1295,9 +1293,9 @@ static int32_t nvt_selftest_open(struct inode *inode, struct file *file)
 		 * Ex. nvt_pid = 500A
 		 *     mpcriteria = "novatek-mp-criteria-500A"
 		 */
-		snprintf(a_mpcriteria, PAGE_SIZE, "novatek-mp-criteria-%04X", ts->nvt_pid);
+		snprintf(mpcriteria, 1024, "novatek-mp-criteria-%04X", ts->nvt_pid);
 
-		if (nvt_mp_parse_dt(np, a_mpcriteria)) {
+		if (nvt_mp_parse_dt(np, mpcriteria)) {
 			//---Download Normal FW---
 			nvt_update_firmware(BOOT_UPDATE_FIRMWARE_NAME);
 			mutex_unlock(&ts->lock);
@@ -1780,16 +1778,13 @@ static int32_t nvt_tp_selftest_open(struct inode *inode, struct file *file)
 	return seq_open(file, &nvt_tp_selftest_seq_ops);
 }
 
-// HACK: get around the stack framesize issue
-static unsigned char mpcriteria[4096] = {0}; 
-
 static ssize_t nvt_tp_selftest_store(struct file *file, const char __user *buff, size_t count, loff_t *offp)
 {
 	uint8_t ret = 0;
 	char *buff_tmp = kzalloc(count + 1, GFP_KERNEL);
 
 	struct device_node *np = ts->client->dev.of_node;
-	//unsigned char mpcriteria[4096] = {0}; //novatek-mp-criteria-default
+	unsigned char mpcriteria[1024] = {0}; //novatek-mp-criteria-default
 
 	TestResult_Short = 0;
 	TestResult_Open = 0;
@@ -1882,7 +1877,7 @@ static ssize_t nvt_tp_selftest_store(struct file *file, const char __user *buff,
 		* Ex. nvt_pid = 500A
 		*	   mpcriteria = "novatek-mp-criteria-500A"
 		*/
-		snprintf(mpcriteria, PAGE_SIZE, "novatek-mp-criteria-%04X", ts->nvt_pid);
+		snprintf(mpcriteria, 1024, "novatek-mp-criteria-%04X", ts->nvt_pid);
 
 		if (nvt_mp_parse_dt(np, mpcriteria)) {
 			//---Download Normal FW---
