@@ -16,7 +16,21 @@
  *
  */
 
-&spi5 {
+/ {
+pinctrl: pio {
+	ctp_gt9896s_pins_default: pins_default {
+	};
+	ctp_gt9896s_spi_mode: spimode_default {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO51__FUNC_SPI5_B_CLK>,
+				<PINMUX_GPIO52__FUNC_SPI5_B_CSB>,
+				<PINMUX_GPIO198__FUNC_SPI5_B_MI>,
+				<PINMUX_GPIO199__FUNC_SPI5_B_MO>;
+			drive-strength = <4>;
+		};
+	};
+};
+spi5@11019000 {
 	status = "okay";
 	#address-cells = <1>;
 	#size-cells = <0>;
@@ -31,8 +45,8 @@
 		//4800000,9600000,15000000,19200000
 		spi-max-frequency = <4800000>;
 
-		novatek,reset-gpio = <&pio 2 0x00>;
-		novatek,irq-gpio = <&pio 1 0x00>;
+		novatek,reset-gpio = <&pinctrl 2 0x00>;
+		novatek,irq-gpio = <&pinctrl 1 0x00>;
 
 		/* 525 */
 		//novatek,swrst-n8-addr = <0x01F01A>;
@@ -528,16 +542,4 @@
 	};
 };
 
-&pio {
-	ctp_gt9896s_pins_default: pins_default {
-	};
-	ctp_gt9896s_spi_mode: spimode_default {
-		pins_cmd_dat {
-			pinmux = <PINMUX_GPIO51__FUNC_SPI5_B_CLK>,
-				<PINMUX_GPIO52__FUNC_SPI5_B_CSB>,
-				<PINMUX_GPIO198__FUNC_SPI5_B_MI>,
-				<PINMUX_GPIO199__FUNC_SPI5_B_MO>;
-			drive-strength = <4>;
-		};
-	};
 };

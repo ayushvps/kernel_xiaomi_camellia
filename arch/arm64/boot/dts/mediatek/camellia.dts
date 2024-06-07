@@ -1,7 +1,7 @@
 /dts-v1/;
 
 / {
-	model = "MT6833";
+	model = "Xiaomi Redmi Note 10 5G (MT6833, camellia)";
 	compatible = "mediatek,MT6833";
 	interrupt-parent = <0x01>;
 	#address-cells = <0x02>;
@@ -5093,6 +5093,7 @@
 		clocks = <0x30 0x09 0x30 0xb3 0x2f 0x49>;
 		clock-names = "parent-clk\0sel-clk\0spi-clk";
 		phandle = <0x138>;
+
 	};
 
 	spi5@11019000 {

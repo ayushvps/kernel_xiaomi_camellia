@@ -134,6 +134,8 @@ const struct mtk_chip_config spi_ctrdata = {
 
 static uint8_t bTouchIsAwake;
 
+bool nvt_gesture_flag;
+
 /*******************************************************
 Description:
 	Novatek touchscreen irq enable/disable function.
