@@ -101,18 +101,18 @@
 static const struct platform_device_id mtk_axi_ids[] = {
 	{	.name = "CONNAC",
 #ifdef CONNAC
-		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_connac},
+		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_connac,
 #endif /* CONNAC */
 #ifdef SOC2_1X1
-		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_soc2_1x1},
+		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_soc2_1x1,
 #endif /* SOC2_1X1 */
 #ifdef SOC2_2X2
-		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_soc2_2x2},
+		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_soc2_2x2,
 #endif /* SOC2_2X2 */
 #ifdef SOC3_0
-		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_soc3_0},
+		.driver_data = (kernel_ulong_t)&mt66xx_driver_data_soc3_0,
 #endif /* SOC3_0 */
-
+	},
 	{ /* end: all zeroes */ },
 };
 
@@ -756,7 +756,7 @@ static int mtk_axi_probe(IN struct platform_device *pdev)
 	struct MTK_WCN_WLAN_CB_INFO rWlanCb;
 #endif
 #endif
-
+	goto exit;
 	g_prPlatDev = pdev;
 	prDriverData = (struct mt66xx_hif_driver_data *)
 			mtk_axi_ids[0].driver_data;

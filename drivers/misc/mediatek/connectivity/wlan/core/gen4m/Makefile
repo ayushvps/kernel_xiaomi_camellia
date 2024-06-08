@@ -70,7 +70,7 @@ ccflags-y += -DWLAN_INCLUDE_PROC
 ccflags-y += -DCFG_SUPPORT_AGPS_ASSIST=0
 ccflags-y += -DCFG_SUPPORT_TSF_USING_BOOTTIME=1
 ccflags-y += -DARP_MONITER_ENABLE=1
-ccflags-y += -Werror
+#ccflags-y += -Werror
 #ccflags-y:=$(filter-out -U$(WLAN_CHIP_ID),$(ccflags-y))
 #ccflags-y += -DLINUX -D$(WLAN_CHIP_ID)
 #workaround: also needed for none LINUX system
@@ -301,7 +301,7 @@ else ifeq ($(CONFIG_MTK_COMBO_WIFI_HIF), axi)
     ccflags-y += -D_HIF_AXI=1
 else ifeq ($(CONFIG_MTK_COMBO_WIFI_HIF), ut)
     # Increase frame size to 2048 because of 'cfg80211_connect_result' exceed stack size
-    ccflags-y += -D_HIF_UT=1 -Wno-unused-function -Wno-unused-variable -Wframe-larger-than=2048
+    ccflags-y += -D_HIF_UT=1 -Wunused-function -Wno-unused-variable -Wframe-larger-than=2048
 else ifeq ($(CONFIG_MTK_COMBO_WIFI_HIF), none)
 	ccflags-y += -D_HIF_NONE=1
 else
