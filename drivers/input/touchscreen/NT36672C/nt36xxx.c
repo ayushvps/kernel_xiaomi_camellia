@@ -1541,7 +1541,7 @@ static int32_t nvt_ts_probe(struct spi_device *client)
 	}
 
 	/* get pinctrl handler from of node */
-	nt36672_pinctrl = devm_pinctrl_get(
+	/*nt36672_pinctrl = devm_pinctrl_get(
 		ts->client->controller->dev.parent);
 	if (IS_ERR_OR_NULL(nt36672_pinctrl)) {
 		NVT_ERR("Failed to get pinctrl handler[need confirm]");
@@ -1549,7 +1549,7 @@ static int32_t nvt_ts_probe(struct spi_device *client)
 		goto err_gpio_config_failed;
 	}
 
-	/* default spi mode */
+	/* default spi mode *
 	nt36672_spi_mode_default = pinctrl_lookup_state(
 				nt36672_pinctrl, PINCTRL_STATE_SPI_DEFAULT);
 	if (IS_ERR_OR_NULL(nt36672_spi_mode_default)) {
@@ -1564,7 +1564,7 @@ static int32_t nvt_ts_probe(struct spi_device *client)
 					nt36672_spi_mode_default);
 	if (ret < 0)
 		NVT_ERR("Failed to select default pinstate, r:%d", ret);
-
+	*/
 	mutex_init(&ts->lock);
 	mutex_init(&ts->xbuf_lock);
 
@@ -1846,7 +1846,8 @@ err_chipvertrim_failed:
 	nvt_gpio_deconfig(ts);
 err_gpio_config_failed:
 err_pinctrl_failed:
-	pinctrl_put(nt36672_pinctrl);
+	// pinctrl_put(nt36672_pinctrl);
+	// Line above causes an premium ticket to an NULL reference kernel panic!
 	nt36672_pinctrl = NULL;
 err_spi_setup:
 err_ckeck_full_duplex:
