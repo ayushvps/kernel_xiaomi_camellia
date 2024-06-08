@@ -3,7 +3,6 @@ Bootable kernel for Redmi Note 10 5G (camellia)
 This is an bootable Linux kernel for camellia.
 
 TODO LIST:
-[] NT36672C touch driver
 [] Get it booting into LineageOS/Android
 [] Big fluffly goal: Get KVM working or get an Ubuntu Touch port booting
 
