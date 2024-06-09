@@ -206,8 +206,6 @@ long int kernel_time(unsigned int step)
 /* -------------------------------------------------------------------- */
 static int gf_get_gpio_dts_info(struct gf_device *gf_dev)
 {
-	// this function causes the kernel panic; FIXME
-	return 0;
 #ifdef CONFIG_OF
 	int ret;
 	int virq;
@@ -284,14 +282,14 @@ static int gf_get_gpio_dts_info(struct gf_device *gf_dev)
 		gf_debug(ERR_LOG, "%s can't find fingerprint pinctrl reset_low\n", __func__);
 		return ret;
 	}
-	/*gf_dev->pins_spi_mode = pinctrl_lookup_state(gf_dev->pinctrl_gpios, "spi_mode");
+	gf_dev->pins_spi_mode = pinctrl_lookup_state(gf_dev->pinctrl_gpios, "spi_mode");
 	if (IS_ERR(gf_dev->pins_spi_mode)) {
 		ret = PTR_ERR(gf_dev->pins_spi_mode);
 		gf_debug(ERR_LOG, "%s can't find fingerprint pinctrl spi_mode\n", __func__);
 		return ret;
-	}*
+	}
 	pinctrl_select_state(gf_dev->pinctrl_gpios, gf_dev->pins_spi_mode);
-	*/
+
 	gf_debug(DEBUG_LOG, "%s, get pinctrl success!\n", __func__);
 #endif
 	return 0;
@@ -316,8 +314,6 @@ static int gf_get_sensor_dts_info(void)
 
 static void gf_hw_power_enable(struct gf_device *gf_dev, u8 onoff)
 {
-	// this also causes a kernel panic
-	return;
 	/* TODO: LDO configure */
 	static int enable = 1;
 	pr_err("%s\n", __func__);
