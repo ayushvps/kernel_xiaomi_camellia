@@ -102,8 +102,6 @@ jobs:
         export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
         export ARCH=arm64
         export SUBARCH=arm64
-        export ANDROID_MAJOR_VERSION=r
-        export KCFLAGS=-w
 
         make O=out KCFLAGS=-w ARCH=arm64 CC="ccache clang" cuttlefish_defconfig
 
