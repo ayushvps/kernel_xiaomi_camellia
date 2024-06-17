@@ -392,7 +392,7 @@ OBJCOPY		= llvm-objcopy
 OBJDUMP		= llvm-objdump
 READELF		= llvm-readelf
 STRIP		= llvm-strip
-HOSTLDFLAGS	+= -fuse-ld=bfd
+HOSTLDFLAGS	+= -fuse-ld=bfd -Wl,--as-needed
 else
 CC		= $(CROSS_COMPILE)gcc
 LD		= $(CROSS_COMPILE)ld
