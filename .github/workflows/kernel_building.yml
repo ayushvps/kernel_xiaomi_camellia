@@ -85,15 +85,10 @@ jobs:
 
         echo "TIME=$(TZ=UTC-8 date +%m%d%H%M )" >> $GITHUB_OUTPUT
 
-    - name: Build Kernel-With-KernelSU
-
+    - name: Build Kernel
+    # idk why KernelSU removed non-GKI support so I'll remove it
       run: |
 
-        rm -rf KernelSU
-
-        rm -rf drivers/kernelsu
-
-        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
 
         export PATH=$PATH:$(pwd)/aarch64-linux-android-4.9/bin/
         export CC=clang
