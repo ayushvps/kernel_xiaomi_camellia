@@ -103,7 +103,7 @@ jobs:
         export ARCH=arm64
         export SUBARCH=arm64
 
-        make O=out KCFLAGS=-w ARCH=arm64 CC="ccache clang" camellia_user_defconfig
+        make O=out KCFLAGS=-w ARCH=arm64 CC="ccache clang" camellia_defconfig
 
         make O=out KCFLAGS=-w ARCH=arm64 CC="ccache clang" -j$(nproc --all)
 
