@@ -29,6 +29,7 @@
 #include <linux/psi.h>
 #include <linux/spinlock.h>
 #include <linux/stop_machine.h>
+#include <linux/kthread.h>
 #include <linux/irq_work.h>
 #include <linux/tick.h>
 #include <linux/slab.h>
